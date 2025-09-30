@@ -1,0 +1,43 @@
+<%- include('partials/header') %>
+
+<div class="row">
+  <div class="col-lg-8">
+    <h1 class="mb-3">Find your next cocktail</h1>
+    <form action="/search" method="POST" class="row g-3">
+      <div class="col-md-6">
+        <label for="name" class="form-label">Search by name</label>
+        <input type="text" id="name" name="name" class="form-control" placeholder="e.g., Margarita">
+      </div>
+      <div class="col-md-6">
+        <label for="ingredient" class="form-label">Or by ingredient</label>
+        <input type="text" id="ingredient" name="ingredient" class="form-control" placeholder="e.g., Vodka">
+      </div>
+      <div class="col-12">
+        <button class="btn btn-primary">Search</button>
+        <a href="/random" class="btn btn-outline-secondary">Feeling Lucky</a>
+      </div>
+    </form>
+
+    <hr class="my-4">
+
+    <h2 class="h4 mb-3">Browse by category</h2>
+    <div class="d-flex flex-wrap gap-2">
+      <% if (categories && categories.length) { %>
+        <% categories.forEach(c => { %>
+          <a class="btn btn-sm btn-light border" href="/category/<%= encodeURIComponent(c) %>"><%= c %></a>
+        <% }) %>
+      <% } else { %>
+        <div class="text-muted">No categories available right now.</div>
+      <% } %>
+    </div>
+  </div>
+
+  <div class="col-lg-4">
+    <div class="border rounded p-3 bg-light">
+      <h2 class="h5">🍸 Tip</h2>
+      <p class="mb-0">Search by ingredient to discover cocktails you can make with what you have.</p>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

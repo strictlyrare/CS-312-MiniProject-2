@@ -1,0 +1,26 @@
+<%- include('partials/header') %>
+
+<div class="d-flex align-items-center justify-content-between mb-3">
+  <h1 class="h3 mb-0"><%= heading %></h1>
+  <a href="/" class="btn btn-sm btn-outline-secondary">New Search</a>
+</div>
+
+<% if (!drinks || !drinks.length) { %>
+  <div class="alert alert-warning">No matching drinks found. Try another name or ingredient.</div>
+<% } else { %>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+    <% drinks.forEach(d => { %>
+      <div class="col">
+        <div class="card h-100">
+          <img src="<%= d.strDrinkThumb %>" alt="<%= d.strDrink %>" class="card-img-top">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title"><%= d.strDrink %></h5>
+            <a href="/drink/<%= d.idDrink %>" class="mt-auto btn btn-primary">View Recipe</a>
+          </div>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+<% } %>
+
+<%- include('partials/footer') %>
